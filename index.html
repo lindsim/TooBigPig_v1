@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<link rel="stylesheet" href="style.css"/>
+	<script src="https://code.createjs.com/easeljs-0.8.0.min.js"></script>
+</header>
+<body onload="init();">
+Too Big <br>Pig <span class="smaller"> ^('(oo)')^</span> 
+<canvas id="main" width="800" height="400"></canvas>
+</body>
+<script>
+var r = Math.random()*(200 - 20) + 20;
+
+	function init(){
+		var stage = new createjs.Stage("main");
+		var pond = new createjs.Shape();
+		pond.graphics.beginFill("peru").drawCircle(0,0,r);
+		pond.x = 200;
+		pond.y = 200;
+		stage.addChild(pond)
+		stage.update();
+	}
+
+
+var domElement = new createjs.DOMElement(htmlElement);
+ domElement.htmlElement.onclick = function() {
+     console.log("clicked");
+ }
+</script>
+</html>
