@@ -2,29 +2,51 @@
 <html>
 <header>
 	<link rel="stylesheet" href="style.css"/>
-	<script src="https://code.createjs.com/easeljs-0.8.0.min.js"></script>
 </header>
-<body onload="init();">
-Too Big <br>Pig <span class="smaller"> ^('(oo)')^</span> 
-<canvas id="main" width="800" height="400"></canvas>
-</body>
+<body>
+Too Big <br>Pig
+<img src="images/pigface.png"><br>
+<canvas id="main" width="380" height="380"></canvas>
 <script>
-var r = Math.random()*(200 - 20) + 20;
+var r = Math.random()*(180 - 20) + 20;
+var max_width = 159; 
+var max_height = 294;
+var min_width =16;
+var min_height = 29; 
+var score = 0;
+var game_on = True;
+var best_pig = 100;
 
-	function init(){
-		var stage = new createjs.Stage("main");
-		var pond = new createjs.Shape();
-		pond.graphics.beginFill("peru").drawCircle(0,0,r);
-		pond.x = 200;
-		pond.y = 200;
-		stage.addChild(pond)
-		stage.update();
+// 	function init(){
+// 		var stage = new createjs.Stage("main");
+// 		var pond = new createjs.Shape();
+// 		pond.graphics.beginFill("peru").drawCircle(0,0,r);
+// 		pond.x = 190;
+// 		pond.y = 190;
+// 		stage.addChild(pond)
+// 		stage.update();
+// 	}
+
+
+	function evaluate(guess){
+		if(guess > best_pig){
+			alert("TOO BIG PIG! GAME OVER.");
+		return
+		}
+		if (guess < best_pig){
+			alert("THAT'LL DO, PIG!");
+		return
+		}
+		if (guess == best_pig){
+			alert("HOG HEAVEN!");
+			return
+		}
 	}
 
-
-var domElement = new createjs.DOMElement(htmlElement);
- domElement.htmlElement.onclick = function() {
-     console.log("clicked");
- }
 </script>
+<form name="Guess">
+<input type="text" name="userGuess">
+<input type="button" value="CHANGE PIG" onClick:"evaluate(document.Guess.useruess.value)">
+
+</body>
 </html>
