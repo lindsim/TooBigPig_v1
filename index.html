@@ -5,9 +5,9 @@
 </header>
 <body>
 Too Big <br>Pig
-<img src="images/pigface.png"><br>
+<img src="images/pigface.png" id="pigface"><br>
 <canvas id="canvas" width="380" height="380"></canvas>
-
+<div id="guessbox"></div>
 <div id="score"></div>
 <div id="message"></div>
 <button id="start" class="startButt">New Game</button>
@@ -16,32 +16,53 @@ Too Big <br>Pig
 <script>
 
 var score = 0;
-$(document).ready(function(){
-	$('#message').text("Let's play!");
-	$('#start').click(newGame);
-	$('#quit').click(endGame);
-});
-
-var r = Math.random()*(180 - 20) + 20;
 var max_width = 159; 
 var max_height = 294;
 var min_width =16;
 var min_height = 29; 
-var score = 30
-var game_on = True;
 var best_pig = 100;
+var pig = "images/pigface.png";
+
+$(document).ready(function(){
+	$('#message').text("Let's play!");
+	$('#start').click(newGame);
+	$('#quit').click(endGame);
+	$('#pigface').click(swapFace);
+});
+
 
 var newGame = function(){
 	$('#message').text("Score:");
+	//add something to turn this off so only happens once
+	$('#guessbox').append('<input type ="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/>');
 	
 };
 
+
+
 var endGame = function(){
 	$('#message').text("Game over.").append('<br>').append("Score:");
+	$('#userGuess').remove();
 };
 
- var scoreIt = function() {
- 	var guess = $('#guess')
+var setR = function(){
+	var r = Math.random()*(180 - 20) + 20;
+}
+
+var swapFace = function(){
+	if (pig == "images/pigface.png"){
+		pig = "images/winkpig.png";
+	}
+	else if (pig == "images/winkpig.png"){
+		pig = "images/pigface.png";
+	}
+
+	$(this).attr('src', pig);
+}
+
+
+var scoreIt = function() {
+ 	var guess = $('#userGuess').val()
 	if(guess > best_pig){
 		$('#message').text("TOO BIG PIG!").append('<br>').append("Game over.").append('<br>').append("Score:");
 		}

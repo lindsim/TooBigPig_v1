@@ -8,6 +8,7 @@ background-color: white;
 
 }
 
+
 button {
 	width: 170px;
 	height: 80px;
@@ -23,6 +24,16 @@ button {
 
 .startButt{
 	background-color: forestgreen;
+}
+
+.textBox{
+	background-color: pink;
+	height: 80px;
+	width: 360px;
+	font-size: 30px;
+	font-family: 'Press Start 2P', cursive;
+	color:black;
+
 }
 
 div {
