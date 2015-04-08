@@ -8,6 +8,27 @@ background-color: white;
 
 }
 
+button {
+	width: 170px;
+	height: 80px;
+	font-size: 16px;
+	font-family: 'Press Start 2P', cursive;
+	color:black;
+	
+}
+
+.quitButt {
+	background-color: gray;
+}
+
+.startButt{
+	background-color: forestgreen;
+}
+
+div {
+	font-size:30px;
+}
+
 .smaller {
 	font-size: 40px;
 }
