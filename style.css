@@ -18,12 +18,20 @@ button {
 	
 }
 
+.pigButt {
+	background-color: pink;
+}
+
 .quitButt {
 	background-color: gray;
 }
 
 .startButt{
 	background-color: forestgreen;
+}
+
+.nextButt{
+	background-color: hotpink;
 }
 
 .textBox{
