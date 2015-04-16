@@ -4,22 +4,33 @@
 	<link rel="stylesheet" href="style.css"/>
 </header>
 <body>
-Too Big <br>Pig
-<img src="images/pigface.png" id="pigface"><br>
-<canvas id="canvas" width="380" height="380"></canvas>
-<div id="guessbox"></div>
+<p>Too Big Pig <img src="images/pigface.png" id="pigface"></p>
+<div id = "gamePlay">
+	<div id = "mudback">
+		
+		<img src="images/field.png" width="50%" id="field">
+		<img src="images/mud.png" width= "35%" id="mud">
+	</div>
+<div lineup="lineup">
+<img src="images/fullpig.png" id="sadpig">
 <input type ="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/>
 <button id="submit" class="pigButt">Pig Magic!</button>
 <button id="next" class="nextButt">Keep playing!</button>
-<div id="score"></div>
+<button id="start" class="startButt">New Game</button><button id="quit" class="quitButt">Quit</button>
+</div>
 <div id="message"></div>
 <div id="message2"></div>
-<button id="start" class="startButt">New Game</button>
-<button id="quit" class="quitButt">Quit</button>
+
+
+
+
+
+
+</div>
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
 
-var score = 0;
+
 var max_width = 159; 
 var max_height = 294;
 var min_width =16;
@@ -27,9 +38,14 @@ var min_height = 29;
 var best_pig = 100;
 var pig = "images/pigface.png";
 var box = 0;
+var score = 0;
+
+$('#mud').show();
+$('#sadpig').hide();
 $('#userGuess').hide();
 $('#submit').hide();
 $('#next').hide();
+$('#quit').hide();
 $('#message2').hide();
 
 $(document).ready(function(){
@@ -39,42 +55,45 @@ $(document).ready(function(){
 	$('#pigface').click(swapFace);
 	$('#submit').click(scoreIt);
 	$('#next').click(newPond);
-	var gamePlay = 1;
 });
 
 
 var newGame = function(){
 	if (box != 1){
+		score = 0;
+		$('#sadpig').hide()
 	 	$('#userGuess').show();
+	 	$('#quit').show();
 	 	$('#submit').show();
-		$('#message').text("Score:");
+		$('#message').text("Score:" + score);
+		$('#start').hide();
+		$('#userGuess').val("");
 		box = 1;
+		score = 0;
 		newPond();
 	}
 };
 
 var endGame = function(){
-	gamePlay = 0;
 	box = 0;
+	$('#sadpig').show()
+	$('#next').hide();
 	$('#userGuess').hide();
 	$('#submit').hide();
-	$('#message').text("Game over.").append('<br>').append("Score:");
+	$('#start').show();
+	$('#quit').hide();
+	$('#message').text("Game over.").append('<br>').append("Score:" + score);
 };
 
 var newPond = function(){
-	$('#userGuess').attr("placeholder");
 	$('#message2').hide();
 	$('#next').hide();
 	$('#submit').show();
 	$('#userGuess').show();
-	var r = Math.random()*(180 - 20) + 20;
-	var pond = $('#canvas');
- 	if (pond.getContext) {
-	    var ctx = pond.getContext('2d');
-	    ctx.fillRect(25,25,100,100);
-	    ctx.clearRect(45,45,60,60);
-	    ctx.strokeRect(50,50,50,50);
-  	}
+	$('#userGuess').val("");
+	var r = Math.random()*(100 - 10) + 10;
+	$('#mud').attr('width', ( 400 * r/100));
+	best_pig = r;
 }
 
 var swapFace = function(){
@@ -91,25 +110,39 @@ var swapFace = function(){
 
 var scoreIt = function() {
  	var guess = $('#userGuess').val()
+
 	if(guess > best_pig){
 		$('#message2').show();
 		$('#message2').text("TOO BIG PIG!");
+
 		endGame();
 		}
-	if (guess < best_pig){
+	else if (guess == 0){
+		alert('Pig magic works from 10 to 100. No size zero pigs! Try again.');
+
+	}
+	else if (guess < best_pig && guess > 0){
 		$('#message2').text('The pig fits!');
 		$('#message2').show();
-		var newPoints = (1000 * .9);
-		score = score + newPoints;
+		var newPoints = Math.round((1000 * (guess/best_pig)));
+		score += newPoints;
 		$('#submit').hide();
 		$('#next').show();
-		}
-	if (guess == best_pig){
-		$('#message2').show();
-		$('#message2').text('Perfect pig!!!');
-		score = score + 1000;
+		$('#message').text("Score:" + score);
 		}
 
+	else if (guess == best_pig){
+		$('#message2').show();
+		$('#message2').text('Perfect pig!!!');
+		score += 1250;
+		$('#submit').hide();
+		$('#next').show();
+		$('#message').text("Score:" + score);
+		}
+	else {
+		alert('That pig can\'t exist. Pig magic works from 10 to 100. Try again.');
+
+	}
 }
 </script>
 </body>

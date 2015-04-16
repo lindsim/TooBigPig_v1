@@ -1,11 +1,30 @@
 
 @import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
 body {
-font-family: 'Press Start 2P', cursive;
-font-size: 55px;
-color:black;
-background-color: white;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 55px;
+	color:black;
+	background-color: white;
+}
 
+
+div{
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+}
+
+#message {
+	display: block;
+	margin: 0 auto;
+	font-size: 30px;
+}
+
+#message2 {
+	display: block;
+	margin: 0 auto;
+	font-size: 30px;
 }
 
 
@@ -15,7 +34,23 @@ button {
 	font-size: 16px;
 	font-family: 'Press Start 2P', cursive;
 	color:black;
+	display: inline-block;
 	
+}
+
+#field {
+	position: absolute;
+	top: 200px;
+	left: 300px;
+}
+
+#mud {
+	position: absolute;
+	top: 208px;
+	left: 400px;
+}
+p {
+	text-align: center;
 }
 
 .pigButt {
@@ -41,12 +76,12 @@ button {
 	font-size: 30px;
 	font-family: 'Press Start 2P', cursive;
 	color:black;
+	display: block;
+	margin: 0 auto;
 
 }
 
-div {
-	font-size:30px;
-}
+
 
 .smaller {
 	font-size: 40px;
