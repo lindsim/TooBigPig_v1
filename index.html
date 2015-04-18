@@ -10,11 +10,12 @@
 		
 		<img src="images/field.png" width="50%" id="field">
 		<img src="images/mud.png" width= "35%" id="mud">
+		<img scr="images/pig_happy.png" id="shades">
 	</div>
 <div lineup="lineup">
 <img src="images/fullpig.png" id="sadpig">
 <button id="submit" class="pigButt">Pig Magic!</button>
-<button id="next" class="nextButt">Next</button><input type ="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/><button id="quit" class="quitButt">Quit</button>
+<button id="next" class="pigButt">Next</button><input type ="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/><button id="quit" class="quitButt">Quit</button>
 
 <button id="start" class="startButt">New Game</button>
 </div>
@@ -40,6 +41,7 @@ var pig = "images/pigface.png";
 var box = 0;
 var score = 0;
 
+$('#shades').hide();
 $('#mud').show();
 $('#sadpig').hide();
 $('#userGuess').hide();
@@ -82,11 +84,13 @@ var endGame = function(){
 	$('#submit').hide();
 	$('#start').show();
 	$('#quit').hide();
+	$('#shades').hide();
 	$('#message').text("Game over.").append('<br>').append("Score:" + score);
 };
 
 var newPond = function(){
 	$('#message2').hide();
+	$('#shades').show();
 	$('#next').hide();
 	$('#submit').show();
 	$('#userGuess').show();
@@ -118,7 +122,7 @@ var scoreIt = function() {
 		endGame();
 		}
 	else if (guess == 0){
-		alert('Pig magic works from 10 to 100. No size zero pigs! Try again.');
+		alert('No size zero pigs! Pig magic works from 10 to 100.  Try again.');
 
 	}
 	else if (guess < best_pig && guess > 0){
@@ -128,6 +132,7 @@ var scoreIt = function() {
 		score += newPoints;
 		$('#submit').hide();
 		$('#next').show();
+		$('#shades').show();
 		$('#message').text("Score:" + score);
 		}
 
@@ -137,6 +142,7 @@ var scoreIt = function() {
 		score += 1250;
 		$('#submit').hide();
 		$('#next').show();
+		$('#shades').show();
 		$('#message').text("Score:" + score);
 		}
 	else {
