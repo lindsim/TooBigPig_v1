@@ -4,27 +4,44 @@
 	<link rel="stylesheet" href="style.css"/>
 </header>
 <body>
-<p>Too Big Pig <img src="images/pigface.png" width="5%" id="pigface"></p>
-<div id="gameplay">
-	<button id="submit" class="pigButt">Pig Magic!</button>
-	<button id="next" class="pigButt">Next</button>
-	<button id="quit" class="quitButt">Quit</button>
-	
-	<button id="start" class="startButt">New Game</button>
-	<input type="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/>
+	<p>Too Big Pig <img src="images/pigface.png" id="pigface"></p>
+	<div class="gameContain">
+		<div class="sidebar">
+			<div class="messages">
+				<p id="scoreMessage"></p>
+				<p id="gameResult"></p>
+				<img src="images/fullpig.png" id="failpig">
+			</div>
+			
+			<div class="controls">
+				<div class="butts">
+					<button id="submit" class="pigButt">Pig Magic!</button>
+					<button id="next" class="pigButt">Next</button>
+					<button id="quit" class="quitButt">Quit</button>
+					<button id="start" class="startButt">New Game</button>
+				</div>
+				<input type="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/>
+			</div>
+		</div>
+		
+		<main class="stage">
+			<img src="images/field.png" width="100%" id="field">
+			<img src="images/mud.png" id="mud">
+			<img src="images/pig_happy.png" id="shades">
+		</main>
+
+	</div>
+
 	
 
-<div id="message"></div>
-<div id="message2"></div>
-</div>
-	<div id ="fielddiv"><img src="images/field.png" width="50%" id="field"></div>
-		<div id ="muddiv"><img src="images/mud.png" width="40%" id="mud"></div>
-			<div id ="pigdiv"><img src="images/pig_happy.png" width="50%" id="shades">
-			<img src="images/fullpig.png" width="50%" id="sadpig">
-			</div>
 
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
+
+// align quit button
+// make all the things in a line (the gameResult" being displayed, buttons, text box)
+// figure out why the field is scaling but the mud isn't
+// 
 
 var best_pig = 100;
 var pig = "images/pigface.png";
@@ -32,16 +49,16 @@ var box = 0;
 var score = 0;
 
 $('#shades').hide();
-$('#mud').show();
-$('#sadpig').hide();
+$('#mud').hide();
+$('#failpig').hide();
 $('#userGuess').hide();
 $('#submit').hide();
 $('#next').hide();
 $('#quit').hide();
-$('#message2').hide();
+$('#scoreMessage').hide();
 
 $(document).ready(function(){
-	$('#message').text("Let's play!");
+	$('#gameResult').text('Let\'s play!');
 	$('#start').click(newGame);
 	$('#quit').click(endGame);
 	$('#pigface').click(swapFace);
@@ -53,40 +70,42 @@ $(document).ready(function(){
 var newGame = function(){
 	if (box != 1){
 		score = 0;
-		$('#sadpig').hide()
+		$('#failpig').hide();
 	 	$('#userGuess').show();
 	 	$('#quit').show();
 	 	$('#submit').show();
-		$('#message').text("Score:" + score);
+		$('#scoreMessage').text("Score:" + score);
+		$('#scoreMessage').show();
 		$('#start').hide();
 		$('#userGuess').val("");
 		box = 1;
-		score = 0;
 		newPond();
 	}
 };
 
 var endGame = function(){
 	box = 0;
-	$('#sadpig').show()
+	$('#failpig').show()
 	$('#next').hide();
 	$('#userGuess').hide();
 	$('#submit').hide();
 	$('#start').show();
 	$('#quit').hide();
 	$('#shades').hide();
-	$('#message').text("Game over.").append('<br>').append("Score:" + score);
+	$('#mud').hide();
+	$('#scoreMessage').text("Game over.").append('<br>').append("Score:" + score);
 };
 
 var newPond = function(){
-	$('#message2').hide();
-	$('#shades').show();
+	$('#gameResult').hide();
 	$('#next').hide();
+	$('#shades').hide();
 	$('#submit').show();
 	$('#userGuess').show();
 	$('#userGuess').val("");
 	var r = Math.random()*(100 - 10) + 10;
-	$('#mud').attr('width', ( 400 * r/100));
+	$('#mud').attr('width', ( 620 * r/100));
+	$('#mud').show();
 	best_pig = r;
 }
 
@@ -103,37 +122,38 @@ var swapFace = function(){
 
 
 var scoreIt = function() {
- 	var guess = $('#userGuess').val()
+ 	var guess = $('#userGuess').val();
 
 	if(guess > best_pig){
-		$('#message2').show();
-		$('#message2').text("TOO BIG PIG!");
-
+		$('#gameResult').show();
+		$('#gameResult').text("TOO BIG PIG!");
 		endGame();
 		}
+
 	else if (guess == 0){
 		alert('No size zero pigs! Pig magic works from 10 to 100.  Try again.');
-
 	}
+
 	else if (guess < best_pig && guess > 0){
-		$('#message2').text('The pig fits!');
-		$('#message2').show();
+		$('#gameResult').text('The pig fits!');
+		$('#gameResult').show();
 		var newPoints = Math.round((1000 * (guess/best_pig)));
 		score += newPoints;
 		$('#submit').hide();
 		$('#next').show();
 		$('#shades').show();
-		$('#message').text("Score:" + score);
+		$('#scoreMessage').text("Score:" + score);
 		}
 
 	else if (guess == best_pig){
-		$('#message2').show();
-		$('#message2').text('Perfect pig!!!');
+		$('#gameResult').show();
+		$('#gameResult').text('Perfect pig!!!');
 		score += 1250;
 		$('#submit').hide();
 		$('#next').show();
+		$('#shades').attr('width', (10 * r/100));
 		$('#shades').show();
-		$('#message').text("Score:" + score);
+		$('#scoreMessage').text("Score:" + score);
 		}
 	else {
 		alert('That pig can\'t exist. Pig magic works from 10 to 100. Try again.');

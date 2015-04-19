@@ -1,5 +1,6 @@
 
 @import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+
 body {
 	font-family: 'Press Start 2P', cursive;
 	font-size: 50px;
@@ -7,9 +8,6 @@ body {
 	background-color: white;
 }
 
-div{
-	text-align: center;
-}
 
 button {
 	width: 100px;
@@ -22,18 +20,39 @@ button {
 	
 }
 
+.gameContain {
+	margin: 0px auto;
+	width: 960px;
 
-
-#message {
-	font-size: 20px;
 }
 
-#message2 {
-	font-size: 20px;
+.sidebar {
+	float: left;
+	width: 30%;
 }
 
+.stage {
+	margin-left: 30%;
+	width: 70%;
+}
 
-#fielddiv {
+.messages {
+	font-size: 20px;
+	height: 200px;
+
+}
+.controls {
+	height:300px;
+
+}
+
+.butts {
+	position: relative;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+/*#fielddiv {
 	position: relative;
 	z-index: 1;
 	height: 0em;
@@ -48,27 +67,32 @@ button {
 
 #pigdiv {
 	position: absolute;
-	z-index: 3;
+	z-index: 4;
 	height: 0em;
-}
+}*/
 
 p {
 	text-align: center;
 }
 
 .pigButt {
+	position:absolute;
 	background-color: mistyrose;
 	border: 4px solid pink;
+	left: 0px;
 }
 
 .startButt{
 	background-color: lawngreen;
 	border: 4px solid limegreen;
+	right: 0px;
 }
 
 .quitButt {
+	position: absolute;
 	background-color: darkgray;
 	border: 4px solid gray;
+	right: 0px;
 }
 
 .textBox{
