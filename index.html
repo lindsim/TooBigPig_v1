@@ -4,38 +4,28 @@
 	<link rel="stylesheet" href="style.css"/>
 </header>
 <body>
-<p>Too Big Pig <img src="images/pigface.png" id="pigface"></p>
-<div id = "gamePlay">
-	<div id = "mudback">
-		
-		<img src="images/field.png" width="50%" id="field">
-		<img src="images/mud.png" width= "35%" id="mud">
-		<img scr="images/pig_happy.png" id="shades">
-	</div>
-<div lineup="lineup">
-<img src="images/fullpig.png" id="sadpig">
-<button id="submit" class="pigButt">Pig Magic!</button>
-<button id="next" class="pigButt">Next</button><input type ="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/><button id="quit" class="quitButt">Quit</button>
+<p>Too Big Pig <img src="images/pigface.png" width="5%" id="pigface"></p>
+<div id="gameplay">
+	<button id="submit" class="pigButt">Pig Magic!</button>
+	<button id="next" class="pigButt">Next</button>
+	<button id="quit" class="quitButt">Quit</button>
+	
+	<button id="start" class="startButt">New Game</button>
+	<input type="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/>
+	
 
-<button id="start" class="startButt">New Game</button>
-</div>
 <div id="message"></div>
 <div id="message2"></div>
-
-
-
-
-
-
 </div>
+	<div id ="fielddiv"><img src="images/field.png" width="50%" id="field"></div>
+		<div id ="muddiv"><img src="images/mud.png" width="40%" id="mud"></div>
+			<div id ="pigdiv"><img src="images/pig_happy.png" width="50%" id="shades">
+			<img src="images/fullpig.png" width="50%" id="sadpig">
+			</div>
+
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
 
-
-var max_width = 159; 
-var max_height = 294;
-var min_width =16;
-var min_height = 29; 
 var best_pig = 100;
 var pig = "images/pigface.png";
 var box = 0;
