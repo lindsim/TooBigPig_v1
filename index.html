@@ -4,21 +4,23 @@
 	<link rel="stylesheet" href="style.css"/>
 </header>
 <body>
-	<p>Too Big Pig <img src="images/pigface.png" id="pigface"></p>
+	<p class="center">Too Big Pig <img src="images/pigface.png" id="pigface"></p>
 	<div class="gameContain">
 		<div class="sidebar">
 			<div class="messages">
 				<p id="scoreMessage"></p>
 				<p id="gameResult"></p>
-				<img src="images/fullpig.png" id="failpig">
+			
 			</div>
 			
 			<div class="controls">
 				<div class="butts">
 					<button id="submit" class="pigButt">Pig Magic!</button>
 					<button id="next" class="pigButt">Next</button>
-					<button id="quit" class="quitButt">Quit</button>
 					<button id="start" class="startButt">New Game</button>
+				</div>
+				<div class = "end">
+					<button id="quit" class="quitButt">Quit</button>
 				</div>
 				<input type="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/>
 			</div>
@@ -28,6 +30,7 @@
 			<img src="images/field.png" width="100%" id="field">
 			<img src="images/mud.png" id="mud">
 			<img src="images/pig_happy.png" id="shades">
+			<img src="images/fullpig.png" width = "100%" id="failpig">
 		</main>
 
 	</div>
@@ -37,11 +40,6 @@
 
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
-
-// align quit button
-// make all the things in a line (the gameResult" being displayed, buttons, text box)
-// figure out why the field is scaling but the mud isn't
-// 
 
 var best_pig = 100;
 var pig = "images/pigface.png";
@@ -93,7 +91,7 @@ var endGame = function(){
 	$('#quit').hide();
 	$('#shades').hide();
 	$('#mud').hide();
-	$('#scoreMessage').text("Game over.").append('<br>').append("Score:" + score);
+	$('#scoreMessage').text("Score:" + score);
 };
 
 var newPond = function(){
@@ -141,6 +139,7 @@ var scoreIt = function() {
 		score += newPoints;
 		$('#submit').hide();
 		$('#next').show();
+		$('#shades').attr('width', (guess * 2));
 		$('#shades').show();
 		$('#scoreMessage').text("Score:" + score);
 		}
@@ -155,9 +154,9 @@ var scoreIt = function() {
 		$('#shades').show();
 		$('#scoreMessage').text("Score:" + score);
 		}
+
 	else {
 		alert('That pig can\'t exist. Pig magic works from 10 to 100. Try again.');
-
 	}
 }
 </script>
