@@ -6,42 +6,43 @@
 <body>
 	<p class="center">Too Big Pig <img src="images/pigface.png" id="pigface"></p>
 	<div class="gameContain">
-		<div class="sidebar">
-			<div class="messages">
-				<p id="gameResult"></p>
-				<p id="gameOver"></p>
-			</div>
-			<div class="score">
-				<p id="scoreMessage"></p>
-			</div>
+		<img src="images/fullpig.png" id="failpig">
 			
-			<div class="controls">
-					<div class="new">
-					<button id="start" class="startButt">New Game</button>
+		<div class="controls">
+
+			<input type="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/>
+			<button id="submit" class="pigButt">Pig Magic!</button>
+			<button id="next" class="pigButt">Next</button>
+			<button id="quit" class="quitButt">Quit</button>
+			<button id="start" class="startButt">New Game</button>
+			<div class="end">
+					
 			</div>
-				<div class="butts">
-					<button id="submit" class="pigButt">Pig Magic!</button>
-					<button id="next" class="pigButt">Next</button>
-				</div>
-				<div class = "end">
-					<button id="quit" class="quitButt">Quit</button>
-				</div>
-				<input type="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/>
-			</div>
+		
 		</div>
+			<div class="messages">
+				<div class="scoreMessage">
+					<p id="scoreMessage" class="wrap"></p>
+				</div>
+				<div class="results">
+					<p id="gameResult" class="wrap"></p>
+				</div>
+				<div class="end">
+					<p id="gameOver" class="wrap"></p>
+				</div>
+
+		</div>
+			
 		
 		<main class="stage">
 			<img src="images/field.png" width="100%" id="field">
 			<img src="images/mud.png" id="mud">
 			<img src="images/pig_happy.png" id="shades">
-			<img src="images/fullpig.png" id="failpig">
+			
 		
 		</main>
 
 	</div>
-
-	
-
 
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
