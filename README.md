@@ -1,1 +1,2 @@
-Simple number guessing game about pigs and mud puddles.
+Too Big Pig is a number guessing game built using Javascript. The player needs to guess what size pig will best fit in the mud puddle provided. The pig changes size using pig magic and goes in the puddle if it fits. The player is awarded points for how close the pig is to the maximum size pig that will fit in the puddle (the closer to the maximum size, the more points awarded). The game ends if the pig is too big for the puddle.  
+
