@@ -2,5 +2,6 @@ Too Big Pig is a number guessing game built using Javascript. The player chooses
 
 The player earns more points the closer the pig is to the maximum size it can be while still fitting in the puddle. If the pig doesn't fit in the puddle, it's TOO BIG PIG! and the game is over. 
 
-Thanks to Joey, Tommaso, Denise, Beeps, and Joe for their encouragement during this project. 
+Thanks to Joey, Tommaso, Denise, Beeps, Emily, and Joe for their encouragement during this project.
+
 
