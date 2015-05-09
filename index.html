@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-<header>
+<head>
 	<link rel="stylesheet" href="style.css"/>
-</header>
+	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+</head>
 <body>
 	<p class="center">Too Big Pig <img src="images/pigface.png" id="pigface"></p>
 	<div class="gameContain">
@@ -37,6 +38,7 @@
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
 
+var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores");
 var best_pig = 100;
 var pig = "images/pigface.png";
 var box = 0;
@@ -79,6 +81,7 @@ var newGame = function(){
 
 var endGame = function(){
 	box = 0;
+	
 	$('#next').hide();
 	$('#userGuess').hide();
 	$('#submit').hide();
@@ -87,6 +90,9 @@ var endGame = function(){
 	$('#shades').hide();
 	$('#mud').hide();
 	$('.scoreMessage').text('Score:' + score);
+	checkscore();
+	
+	
 };
 
 var newPond = function(){
@@ -98,11 +104,13 @@ var newPond = function(){
 	$('#submit').show();
 	$('#userGuess').show();
 	$('#userGuess').val("");
-	var r = Math.random()*(100 - 10) + 10;
+	var r = Math.round(Math.random()*(100 - 10) + 10);
 	$('#mud').attr('width', ( 620 * r/100));
 	$('#mud').show();
 	best_pig = r;
 }
+
+
 
 var swapFace = function(){
 	if (pig == "images/pigface.png"){
@@ -145,7 +153,7 @@ var scoreIt = function() {
 	else if (guess == best_pig){
 		$('.gameResult').show();
 		$('.gameResult').text('Perfect pig!!!');
-		score += 1250;
+		score += 1500;
 		$('#submit').hide();
 		$('#next').show();
 		$('#shades').attr('width', (guess * 3.5));
@@ -157,7 +165,40 @@ var scoreIt = function() {
 		alert('That pig can\'t exist. Pig magic works from 10 to 100. Try again.');
 	}
 }
+
+var checkscore = function() {
+	var items = [];
+	ref.orderByValue().on("value", function(snapshot) {
+		snapshot.forEach(function(data){
+			
+			items.push([data.val(), data.key()]);
+		})
+	})
+
+	if (score >= items[0][0]) {
+			changeScores(items);
+		}
+
+}
+
+
+var changeScores = function(items){
+		var name = prompt("Top score! That'll do pig. Enter your initials (3 characters):") +"_" +"_" + "_";
+
+		ref.update({[name.substring(0,3)] : score});
+		
+		var subRef = new Firebase("https://too-big-pig-1.firebaseio.com/scores"+"/" + items[0][1]);
+		
+		subRef.remove();
+		
+		if (confirm("Go to top score page?")) {
+			location.href = "scores.html";
+		}
+ 
+	}
+
+
 </script>
-<p class="link">created by <a href="https://github.com/lindsim/TooBigPig_v1">Lindsey Simard</a> </p>
+<p class="link"><a href="scores.html">Top Scores</a> /////////// created by <a href="https://github.com/lindsim/TooBigPig_v1">Lindsey Simard</a></p>
 </body>
 </html>

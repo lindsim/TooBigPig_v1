@@ -125,3 +125,32 @@ button {
 	height: 50px;
 	text-align: center;
 }
+
+.chart {
+	text-align: center;
+	font-size: 30px;
+	width: 749px;
+	margin: 0 auto;
+	border-style: dashed;
+	border-width: 10px;
+	background-color: LightGreen;
+}
+
+.ordered {
+	margin: 40px;
+	text-align: left;
+}
+
+.background {
+	background-image: url("images/field.png"); 
+}
+.back {
+	text-align: center;
+	font-size: 30px;
+	width: 749px;
+	margin: 0 auto;
+}
+
+/*ol {
+	list-style-position: inside;
+}*/
