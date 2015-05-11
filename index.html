@@ -181,12 +181,12 @@ var checkscore = function(scr) {
 
 
 var changeScores = function(items, s){
-		var name = prompt("Top score! That'll do pig. Enter your initials (3 characters):") +"_" +"_" + "_";
+		var name = prompt("Top score! That'll do pig. Enter your initials (3 characters):") +"___";
 		var shortName = name.substring(0,3);
 		var obj = {};
 		obj[shortName] = s;
 		ref.update(obj);
-
+//trim to 10
 		var subRef = new Firebase("https://too-big-pig-1.firebaseio.com/scores"+"/" + items[0][1]);
 		
 		subRef.remove();
