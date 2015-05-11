@@ -9,7 +9,7 @@
 	<p class="center">Too Big Pig <img src="images/pigface.png" id="pigface"></p>
 	<div class="gamecontain">
 	<div id="chart" class="chart">
-		<ol> </ol>
+		<ol class="ordered"> </ol>
 	</div>
 
 <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>	
@@ -19,7 +19,7 @@
 var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores");
 var items = [];
 
-ref.orderByValue().on("value", function(snapshot) {
+ref.orderByValue().once("value", function(snapshot) {
 	snapshot.forEach(function(data){
 		items.push("<li>" + data.key() + "....." + data.val() + "</li>");
 	});
