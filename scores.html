@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="style.css"/>
-	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
 	
 </head>
 <body class = "background">
@@ -11,26 +11,21 @@
 	<div id="chart" class="chart">
 		<ol> </ol>
 	</div>
-	
+
+<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>	
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
 <script>
 var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores");
 var items = [];
 
-ref.on("value", function(snapshot) {
-	console.log(snapshot.val());
-}, function (errorObject) {
-	console.log("The read failed: " + errorObject.code);
-	});
-
 ref.orderByValue().on("value", function(snapshot) {
 	snapshot.forEach(function(data){
 		items.push("<li>" + data.key() + "....." + data.val() + "</li>");
-	})
+	});
 	var itemsrev = items.reverse();
-	 $(".ordered").append(itemsrev.join(''));
- 	
- })
+	$(".ordered").append(itemsrev.join(''));
+});
  
 $(document).ready(function(){
 	$('#pigface').click(swapFace);

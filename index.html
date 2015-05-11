@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="style.css"/>
-	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+	
 </head>
 <body>
 	<p class="center">Too Big Pig <img src="images/pigface.png" id="pigface"></p>
@@ -34,7 +34,7 @@
 		</main>
 
 	</div>
-
+<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
 
@@ -79,9 +79,10 @@ var newGame = function(){
 	}
 };
 
-var endGame = function(){
+var endGame = function() {
+
 	box = 0;
-	
+	checkscore(score);
 	$('#next').hide();
 	$('#userGuess').hide();
 	$('#submit').hide();
@@ -90,9 +91,6 @@ var endGame = function(){
 	$('#shades').hide();
 	$('#mud').hide();
 	$('.scoreMessage').text('Score:' + score);
-	checkscore();
-	
-	
 };
 
 var newPond = function(){
@@ -166,27 +164,29 @@ var scoreIt = function() {
 	}
 }
 
-var checkscore = function() {
+var checkscore = function(scr) {
 	var items = [];
-	ref.orderByValue().on("value", function(snapshot) {
-		snapshot.forEach(function(data){
-			
+	//console.log("Ref =");
+	//console.log(ref);
+	ref.orderByValue().once("value", function(snapshot) {
+		snapshot.forEach(function(data) {
 			items.push([data.val(), data.key()]);
-		})
-	})
-
-	if (score >= items[0][0]) {
-			changeScores(items);
-		}
-
+		});
+		//console.log(items);
+		if (scr >= items[0][0]) {
+				changeScores(items, scr);
+			}	
+	});
 }
 
 
-var changeScores = function(items){
+var changeScores = function(items, s){
 		var name = prompt("Top score! That'll do pig. Enter your initials (3 characters):") +"_" +"_" + "_";
+		var shortName = name.substring(0,3);
+		var obj = {};
+		obj[shortName] = s;
+		ref.update(obj);
 
-		ref.update({[name.substring(0,3)] : score});
-		
 		var subRef = new Firebase("https://too-big-pig-1.firebaseio.com/scores"+"/" + items[0][1]);
 		
 		subRef.remove();
@@ -201,8 +201,7 @@ var changeScores = function(items){
 </script>
 
 <p class="link"><a href="scores.html">Top Scores</a> /////////// created by <a href="https://github.com/lindsim/TooBigPig_v1">Lindsey Simard</a></p>
-=======
-<p class="link">created by <a href="https://github.com/lindsim/TooBigPig_v1">Lindsey Simard</a> </p>
+
 
 </body>
 </html>
