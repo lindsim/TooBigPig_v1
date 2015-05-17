@@ -165,37 +165,36 @@ var scoreIt = function() {
 }
 
 var checkscore = function(scr) {
-	//var items = [];
-	// curl 'https://too-big-pig-1.firebaseio.com/scores.json?orderBy="value"&print=pretty';
-	//console.log("Ref =");
-	// //console.log(ref);
-	// ref + i.orderByValue().once("value", function(snapshot) {
-	// 	snapshot.forEach(function(data) {
-	// 		items.push([data.val(), data.key()]);
-	// 	});
-		//console.log(items);
-	// 	if (scr >= items[0][0]) {
-	// 			changeScores(items, scr);
-	// 		}	
-	// });
-	// for (var j = 0; j < 10; j++){
-	// 	items.push(ref + i.once
-	// }
-	//
+	var items = [];
+
+	ref.orderByChild("name").once("value", function(snapshot) {
+	snapshot.forEach(function(data){
+		items.push([data.val().points, data.val().name, data.val()]);
+	});
+
+	var itemsSort = items.sort();
+
+	});
+
+	if (scr >= itemsSort[0][0]) {
+			changeScores(itemsSort[0][0], itemsSort[0][1], itemsSort[0][2], scr);
+	}	
+
 }
 
 
-var changeScores = function(items, s){
-		var name = prompt("Top score! That'll do pig. Enter your initials (3 characters):") +"___";
+
+var changeScores = function(lowScore, lowName, lowID, playerPoints){
+		var name = prompt("Top score! That'll do pig. Enter your initials (3 characters):") +"____";
 		var shortName = name.substring(0,3);
-		var obj = {};
-		obj[shortName] = s;
-		ref.update(obj);
-//trim to 10
-		var subRef = new Firebase("https://too-big-pig-1.firebaseio.com/scores"+"/" + items[0][1]);
+		var obj = {"name": shortName, 
+					"points": playerPoints };
+
+		var specificRef = ref + "/" + lowID;
 		
-		subRef.remove();
+		specificRef.update(obj);
 		
+
 		if (confirm("Go to top score page?")) {
 			location.href = "scores.html";
 		}
