@@ -174,11 +174,11 @@ var checkscore = function(scr) {
 	});
 
 function compareNumbers (a, b) {
-  return a[0] < b[0];
+  return a[0] > b[0];
 }
 
 var itemsSort = items.sort(compareNumbers);
-	
+console.log(itemsSort[0][0]);	
 	if (parseInt(scr) >= itemsSort[0][0]) {
 			changeScores(itemsSort[0][2], scr);
 	}	
