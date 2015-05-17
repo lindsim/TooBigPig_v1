@@ -169,28 +169,31 @@ var checkscore = function(scr) {
 
 	ref.orderByChild("name").once("value", function(snapshot) {
 	snapshot.forEach(function(data){
-		items.push([data.val().points, data.val().name, data.val()]);
+		items.push([data.val().points, data.val().name, data.val().idNum]);
+
 	});
 
 	var itemsSort = items.sort();
-
+	
+	if (scr >= itemsSort[0][0]) {
+			changeScores(itemsSort[0][2], scr);
+	}	
+	
 	});
 
-	if (scr >= itemsSort[0][0]) {
-			changeScores(itemsSort[0][0], itemsSort[0][1], itemsSort[0][2], scr);
-	}	
+
 
 }
 
 
 
-var changeScores = function(lowScore, lowName, lowID, playerPoints){
+var changeScores = function(lowID, playerPoints){
 		var name = prompt("Top score! That'll do pig. Enter your initials (3 characters):") +"____";
 		var shortName = name.substring(0,3);
 		var obj = {"name": shortName, 
 					"points": playerPoints };
 
-		var specificRef = ref + "/" + lowID;
+		var specificRef = new Firebase("https://too-big-pig-1.firebaseio.com/scores/" + lowID);
 		
 		specificRef.update(obj);
 		
