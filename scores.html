@@ -2,7 +2,6 @@
 <html>
 <head>
 	<link rel="stylesheet" href="style.css"/>
-
 	
 </head>
 <body class = "background">
@@ -19,14 +18,22 @@
 var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores");
 var items = [];
 
-ref.orderByValue().once("value", function(snapshot) {
+ref.orderByChild("name").once("value", function(snapshot) {
 	snapshot.forEach(function(data){
-		items.push("<li>" + data.key() + "....." + data.val() + "</li>");
+		items.push([data.val().points, data.val().name]);
 	});
-	var itemsrev = items.reverse();
-	$(".ordered").append(itemsrev.join(''));
+
+var itemsSort = items.sort();
+var itemsrev = itemsSort.reverse();
+var display = [];
+for (var x = 0; x < 10; x++){
+	display.push("<li>" + itemsrev[x][1] + "....." + itemsrev[x][0] + "</li>");
+}
+	$(".ordered").append(display.join(''));
+
 });
- 
+
+
 $(document).ready(function(){
 	$('#pigface').click(swapFace);
 });

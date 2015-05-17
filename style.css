@@ -138,7 +138,7 @@ button {
 }
 
 .ordered {
-	margin: 60px;
+	margin-left: 140px;
 	text-align: left;
 }
 
@@ -152,7 +152,4 @@ button {
 	margin: 0 auto;
 }
 
-/*ol {
-	list-style-position: inside;
-}*/
 

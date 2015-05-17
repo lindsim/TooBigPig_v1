@@ -165,18 +165,23 @@ var scoreIt = function() {
 }
 
 var checkscore = function(scr) {
-	var items = [];
+	//var items = [];
+	// curl 'https://too-big-pig-1.firebaseio.com/scores.json?orderBy="value"&print=pretty';
 	//console.log("Ref =");
-	//console.log(ref);
-	ref.orderByValue().once("value", function(snapshot) {
-		snapshot.forEach(function(data) {
-			items.push([data.val(), data.key()]);
-		});
+	// //console.log(ref);
+	// ref + i.orderByValue().once("value", function(snapshot) {
+	// 	snapshot.forEach(function(data) {
+	// 		items.push([data.val(), data.key()]);
+	// 	});
 		//console.log(items);
-		if (scr >= items[0][0]) {
-				changeScores(items, scr);
-			}	
-	});
+	// 	if (scr >= items[0][0]) {
+	// 			changeScores(items, scr);
+	// 		}	
+	// });
+	// for (var j = 0; j < 10; j++){
+	// 	items.push(ref + i.once
+	// }
+	//
 }
 
 
