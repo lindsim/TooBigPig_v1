@@ -23,11 +23,17 @@ ref.orderByChild("name").once("value", function(snapshot) {
 		items.push([data.val().points, data.val().name]);
 	});
 
-var itemsSort = items.sort();
-var itemsrev = itemsSort.reverse();
+
+
+function compareNumbers (a, b) {
+  return a[0] < b[0];
+}
+
+var itemsSort = items.sort(compareNumbers);
+
 var display = [];
 for (var x = 0; x < 10; x++){
-	display.push("<li>" + itemsrev[x][1] + "....." + itemsrev[x][0] + "</li>");
+	display.push("<li>" + itemsSort[x][1] + "....." + itemsSort[x][0] + "</li>");
 }
 	$(".ordered").append(display.join(''));
 

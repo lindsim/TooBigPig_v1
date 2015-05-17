@@ -169,13 +169,17 @@ var checkscore = function(scr) {
 
 	ref.orderByChild("name").once("value", function(snapshot) {
 	snapshot.forEach(function(data){
-		items.push([data.val().points, data.val().name, data.val().idNum]);
+		items.push([parseInt(data.val().points), data.val().name, data.val().idNum]);
 
 	});
 
-	var itemsSort = items.sort();
+function compareNumbers (a, b) {
+  return a[0] < b[0];
+}
+
+var itemsSort = items.sort(compareNumbers);
 	
-	if (scr >= itemsSort[0][0]) {
+	if (parseInt(scr) >= itemsSort[0][0]) {
 			changeScores(itemsSort[0][2], scr);
 	}	
 	
