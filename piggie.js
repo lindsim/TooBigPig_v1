@@ -4,17 +4,18 @@ var pig = "images/pigface.png";
 var	box = 0;
 var	score = 0;
 
-$('#shades').hide();
-$('#mud').hide();
-$('#failpig').hide();
-$('#userGuess').hide();
-$('#submit').hide();
-$('#next').hide();
-$('#quit').hide();
-$('.scoreMessage').hide();
+
 
 
 $(document).ready(function(){
+	$('#shades').hide();
+	$('#mud').hide();
+	$('#failpig').hide();
+	$('#userGuess').hide();
+	$('#submit').hide();
+	$('#next').hide();
+	$('#quit').hide();
+	$('.scoreMessage').hide();
 	$('.gameResult').text('Let\'s play!');
 	$('#start').click(newGame);
 	$('#quit').click(endGame);
