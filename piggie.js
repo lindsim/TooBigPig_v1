@@ -1,13 +1,4 @@
-var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores");
-var best_pig = 100;
-var pig = "images/pigface.png";
-var	box = 0;
-var	score = 0;
-
-
-
-
-$(document).ready(function(){
+(function setUp(){
 	$('#shades').hide();
 	$('#mud').hide();
 	$('#failpig').hide();
@@ -16,6 +7,10 @@ $(document).ready(function(){
 	$('#next').hide();
 	$('#quit').hide();
 	$('.scoreMessage').hide();
+})();
+
+$(document).ready(function(){
+
 	$('.gameResult').text('Let\'s play!');
 	$('#start').click(newGame);
 	$('#quit').click(endGame);
@@ -24,9 +19,13 @@ $(document).ready(function(){
 	$('#next').click(newPond);
 });
 
+var best_pig = 100;
+var pig = "images/pigface.png";
+var	box = 0;
+var	score = 0;
 
 var newGame = function(){
-	if (box != 1){
+	if (box != 1){script
 		score = 0;
 		$('#failpig').hide();
 	 	$('#userGuess').show();
@@ -34,7 +33,7 @@ var newGame = function(){
 	 	$('#submit').show();
 		$('.scoreMessage').text("Score:" + score);
 		$('.scoreMessage').show();
-		$('#start').hide();
+		$('#start').hide();new Firebase("https://too-big-pig-1.firebaseio.com/scores");
 		$('#userGuess').val("");
 		box = 1;
 		newPond();
@@ -42,7 +41,6 @@ var newGame = function(){
 };
 
 var endGame = function() {
-
 	box = 0;
 	checkscore(score);
 	$('#next').hide();
@@ -128,27 +126,22 @@ var scoreIt = function() {
 
 var checkscore = function(scr) {
 	var items = [];
-
+	var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores");
 	ref.orderByChild("name").once("value", function(snapshot) {
 	snapshot.forEach(function(data){
 		items.push([parseInt(data.val().points), data.val().name, data.val().idNum]);
-
 	});
 
-function compareNumbers (a, b) {
-  return a[0] > b[0];
-}
-
-var itemsSort = items.sort(compareNumbers);
-console.log(itemsSort[0][0]);
-	if (parseInt(scr) >= itemsSort[0][0]) {
-			changeScores(itemsSort[0][2], scr);
+	function compareNumbers (a, b) {
+  	return a[0] > b[0];
 	}
 
+	var itemsSort = items.sort(compareNumbers);
+
+	if (parseInt(scr) >= itemsSort[0][0]) {
+		changeScores(itemsSort[0][2], scr);
+		}
 	});
-
-
-
 }
 
 
@@ -159,10 +152,7 @@ var changeScores = function(lowID, playerPoints){
 		obj = {"name": shortName,
 					"points": playerPoints },
 		specificRef = new Firebase("https://too-big-pig-1.firebaseio.com/scores/" + lowID);
-
 		specificRef.update(obj);
-
-
 		if (confirm("Go to top score page?")) {
 			location.href = "scores.html";
 		}
