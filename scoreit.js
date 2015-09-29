@@ -1,4 +1,4 @@
-//var Firebase = require("firebase");
+
 var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores");
 var items = [];
 
