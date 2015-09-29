@@ -1,4 +1,8 @@
-
+var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores"),
+	best_pig = 100,
+	pig = "images/pigface.png",
+	box = 0,
+	score = 0;
 
 $('#shades').hide();
 $('#mud').hide();
@@ -9,11 +13,6 @@ $('#next').hide();
 $('#quit').hide();
 $('.scoreMessage').hide();
 
-var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores"),
-	best_pig = 100,
-	pig = "images/pigface.png",
-	box = 0,
-	score = 0;
 
 $(document).ready(function(){
 	$('.gameResult').text('Let\'s play!');
@@ -140,11 +139,11 @@ function compareNumbers (a, b) {
 }
 
 var itemsSort = items.sort(compareNumbers);
-console.log(itemsSort[0][0]);	
+console.log(itemsSort[0][0]);
 	if (parseInt(scr) >= itemsSort[0][0]) {
 			changeScores(itemsSort[0][2], scr);
-	}	
-	
+	}
+
 	});
 
 
@@ -156,17 +155,15 @@ console.log(itemsSort[0][0]);
 var changeScores = function(lowID, playerPoints){
 		var name = prompt("Top score! That'll do pig. Enter your initials (3 characters):") +"____",
 		shortName = name.substring(0,3),
-		obj = {"name": shortName, 
+		obj = {"name": shortName,
 					"points": playerPoints },
 		specificRef = new Firebase("https://too-big-pig-1.firebaseio.com/scores/" + lowID);
-		
+
 		specificRef.update(obj);
-		
+
 
 		if (confirm("Go to top score page?")) {
 			location.href = "scores.html";
 		}
- 
+
 	}
-
-

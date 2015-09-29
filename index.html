@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset = "utf-8">
 	<link rel="stylesheet" href="style.css"/>
-	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js" async></script>
-	<script src="https://code.jquery.com/jquery-1.11.2.min.js" async></script>
-	<script src="piggie.js" aysnc></script>
+	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="piggie.js"></script>
+
 </head>
 <body>
 	<p class="center">Too Big Pig <img src="images/pigface.png" id="pigface"></p>
 	<div class="gameContain">
 		<img src="images/failpig.png" id="failpig">
-			
+
 		<div class="controls">
 				<input type="text" id="userGuess" class="textBox" name="guess" placeholder="How big pig?"/>
 				<button id="submit" class="pigButt">Pig Magic!</button>
@@ -19,19 +21,19 @@
 				<button id="start" class="startButt">New Game</button>
 
 		</div>
-		
+
 		<div class="messages">
 			<div class="scoreMessage"></div>
 			<div class="gameResult"></div>
 		</div>
-			
-		
+
+
 		<main class="stage">
 			<img src="images/field.png" width="100%" id="field">
 			<img src="images/mud.png" id="mud">
 			<img src="images/shades.png" id="shades">
-			
-		
+
+
 		</main>
 
 	</div>
