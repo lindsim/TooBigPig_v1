@@ -1,9 +1,11 @@
+var Firebase = require("firebase");
+
 var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores"),
 	best_pig = 100,
 	pig = "images/pigface.png",
 	box = 0,
 	score = 0;
-
+firebase not defined in javascript file
 $('#shades').hide();
 $('#mud').hide();
 $('#failpig').hide();
