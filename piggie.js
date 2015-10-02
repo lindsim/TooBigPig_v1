@@ -1,23 +1,17 @@
-(function setUp(){
-	$('#shades').hide();
-	$('#mud').hide();
-	$('#failpig').hide();
-	$('#userGuess').hide();
-	$('#submit').hide();
-	$('#next').hide();var best_pig = 100;
-var pig = "images/pigface.png";
-var	box = 0;
-var	score = 0;
-	$('#quit').hide();
-	$('.scoreMessage').hide();
-})();
-
 $(document).ready(function(){
 	$('.gameResult').text('Let\'s play!');
 	$('#start').click(newGame);
 	$('#quit').click(endGame);
 	$('#submit').click(scoreIt);
 	$('#next').click(newPond);
+	$('#shades').hide();
+	$('#mud').hide();
+	$('#failpig').hide();
+	$('#userGuess').hide();
+	$('#submit').hide();
+	$('#next').hide();
+	$('#quit').hide();
+	$('.scoreMessage').hide();
 });
 
 var best_pig = 100;
@@ -26,7 +20,7 @@ var	box = 0;
 var	score = 0;
 
 var newGame = function(){
-	if (box != 1){script
+	if (box != 1){
 		score = 0;
 		$('#failpig').hide();
 	 	$('#userGuess').show();
@@ -87,16 +81,16 @@ var scoreIt = function() {
 	}
 
 	else if (guess < best_pig && guess > 0){
-		$('.gameResult').text('The pig fits!');
-		$('.gameResult').show();
-		var newPoints = Math.round((1000 * (guess/best_pig)));
-		score += newPoints;
-		$('#submit').hide();
-		$('#next').show();
-		$('#shades').attr('width', (guess * 3.5));
-		$('#shades').show();
-		$('.scoreMessage').text("Score:" + score);
-		}
+			$('.gameResult').text('The pig fits!');
+			$('.gameResult').show();
+			var newPoints = Math.round((1000 * (guess/best_pig)));
+			score += newPoints;
+			$('#submit').hide();
+			$('#next').show();
+			$('#shades').attr('width', (guess * 3.5));
+			$('#shades').show();
+			$('.scoreMessage').text("Score:" + score);
+	}
 
 	else if (guess == best_pig){
 		$('.gameResult').show();
