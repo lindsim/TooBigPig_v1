@@ -1,3 +1,4 @@
+
 (function listScores (){
 	var ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores"),
 		items = [],
@@ -18,27 +19,6 @@
 	});
 })();
 
-
 function compareNumbers (a, b) {
   return a[0] < b[0];
-}
-
-
-
-
-$(document).ready(function(){
-	$('#pigface').click(swapFace);
-});
-
-var pig = "images/pigface.png";
-
-var swapFace = function(){
-	if (pig == "images/pigface.png"){
-		pig = "images/winkpig.png";
-	}
-	else if (pig == "images/winkpig.png"){
-		pig = "images/pigface.png";
-	}
-
-	$(this).attr('src', pig);
 }

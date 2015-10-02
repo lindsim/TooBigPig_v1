@@ -4,17 +4,18 @@
 	$('#failpig').hide();
 	$('#userGuess').hide();
 	$('#submit').hide();
-	$('#next').hide();
+	$('#next').hide();var best_pig = 100;
+var pig = "images/pigface.png";
+var	box = 0;
+var	score = 0;
 	$('#quit').hide();
 	$('.scoreMessage').hide();
 })();
 
 $(document).ready(function(){
-
 	$('.gameResult').text('Let\'s play!');
 	$('#start').click(newGame);
 	$('#quit').click(endGame);
-	$('#pigface').click(swapFace);
 	$('#submit').click(scoreIt);
 	$('#next').click(newPond);
 });
@@ -69,17 +70,6 @@ var newPond = function(){
 }
 
 
-
-var swapFace = function(){
-	if (pig == "images/pigface.png"){
-		pig = "images/winkpig.png";
-	}
-	else if (pig == "images/winkpig.png"){
-		pig = "images/pigface.png";
-	}
-
-	$(this).attr('src', pig);
-}
 
 
 var scoreIt = function() {
