@@ -31,7 +31,7 @@ var newGame = function(){
 		$('#start').hide();new Firebase("https://too-big-pig-1.firebaseio.com/scores");
 		$('#userGuess').val("");
 		box = 1;
-		newPond();
+		makePond.newPond();
 	}
 };
 
