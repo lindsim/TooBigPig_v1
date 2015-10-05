@@ -15,7 +15,6 @@ $(document).ready(function(){
 });
 
 var best_pig = 100;
-var pig = "images/pigface.png";
 var	box = 0;
 var	score = 0;
 
