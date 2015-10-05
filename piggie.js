@@ -28,10 +28,10 @@ var newGame = function(){
 	 	$('#submit').show();
 		$('.scoreMessage').text("Score:" + score);
 		$('.scoreMessage').show();
-		$('#start').hide();new Firebase("https://too-big-pig-1.firebaseio.com/scores");
+		$('#start').hide();
 		$('#userGuess').val("");
 		box = 1;
-		makePond.newPond();
+		newPond();
 	}
 };
 
@@ -42,9 +42,9 @@ var endGame = function() {
 	$('#userGuess').hide();
 	$('#submit').hide();
 	$('#start').show();
-	$('#quit').hide();
 	$('#shades').hide();
 	$('#mud').hide();
+	$('#quit').hide();
 	$('.scoreMessage').text('Score:' + score);
 };
 
