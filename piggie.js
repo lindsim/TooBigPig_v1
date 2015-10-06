@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 
 var pigApp = (function (){
-	//private variables and functions
+	//private variables and functions (hidden props)
  	var best_pig, mudWidth, genPig, score = 0;
 	genPig = function(){
 		best_pig = Math.round(Math.random()*(100 - 10) + 10),
@@ -16,8 +16,7 @@ var pigApp = (function (){
 	}
 
 	return {
-		//public variables myPublicVar: "foo",
-		//score: 0,
+		//pubic props
 		resultText: "Let\'s play!",
 
 		startGame: function (){
@@ -33,7 +32,7 @@ var pigApp = (function (){
 		},
 
 		newPond: function(){
-			console.log("newPond");
+			//console.log("newPond");
 			genPig();
 			$('.gameResult').hide();
 			$('#next').hide();
@@ -46,7 +45,7 @@ var pigApp = (function (){
 
 		},
 		checkScore: function() {
-			console.log("checkScore");
+			//console.log("checkScore");
 			var items = [],
 				ref = new Firebase("https://too-big-pig-1.firebaseio.com/scores");
 			ref.orderByChild("name").once("value", function(snapshot) {
@@ -67,7 +66,7 @@ var pigApp = (function (){
 		},
 
 		scoreIt: function (){
-			console.log("scoreIt");
+			//console.log("scoreIt");
 			var guess = $('#userGuess').val();
 			$('#submit').hide();
 			$('#next').show();
@@ -104,10 +103,10 @@ var pigApp = (function (){
 		},
 
 		checkGuess: function (){
-			console.log("checkGuess");
+			//console.log("checkGuess");
 
 			var guess = $('#userGuess').val();
-			console.log(guess);
+			//console.log(guess);
 
 			if(guess > best_pig){
 				$('#failpig').show();
